@@ -1,0 +1,20 @@
+import { jsonFormatter } from "./json-formatter";
+import { jsonValidator } from "./json-validator";
+import { jsonMinifier } from "./json-minifier";
+import { jsonDiff } from "./json-diff";
+import { jsonToCsv } from "./json-to-csv";
+import { csvToJson } from "./csv-to-json";
+import { jsonToYaml } from "./json-to-yaml";
+import { base64Encoder } from "./base64-encoder";
+import { base64Decoder } from "./base64-decoder";
+import { jwtDecoder } from "./jwt-decoder";
+import { urlEncoder } from "./url-encoder";
+import { urlDecoder } from "./url-decoder";
+import { uuidGenerator } from "./uuid-generator";
+import { jsonToTypescript } from "./json-to-typescript";
+import { jsonToPython } from "./json-to-python";
+import { jsonToJava } from "./json-to-java";
+import type { ToolDefinition } from "./types";
+
+export const tools: ToolDefinition[] = [jsonFormatter,jsonValidator,jsonMinifier,jsonDiff,jsonToCsv,csvToJson,jsonToYaml,base64Encoder,base64Decoder,jwtDecoder,urlEncoder,urlDecoder,uuidGenerator,jsonToTypescript,jsonToPython,jsonToJava];
+export const getTool = (slug: string) => tools.find((tool) => tool.slug === slug);

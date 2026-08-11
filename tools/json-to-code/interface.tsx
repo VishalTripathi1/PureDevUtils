@@ -1,0 +1,2 @@
+"use client";import {TextConverter}from "@/components/text-converter";import {jsonToCode}from "./logic";
+export function JsonToCode({language,label,extension}:{language:"typescript"|"python"|"java";label:string;extension:string}){return <TextConverter converter={(v)=>jsonToCode(v,language)} inputLabel="Input JSON" outputLabel={`${label} output`} actionLabel={`Generate ${label}`} example={'{"name":"Ada","active":true,"skills":["math"]}'} downloadName={`model.${extension}`} mimeType="text/plain"/>}
