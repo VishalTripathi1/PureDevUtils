@@ -1,8 +1,8 @@
-# Developer Toolbox (temporary name)
+# PureDevUtils
 
 A privacy-first collection of browser-based developer utilities.
 
-The product name and production URL are temporary. Set `NEXT_PUBLIC_SITE_URL` for a deployed environment and update `config/site.ts` when the identity is finalized.
+Set `NEXT_PUBLIC_SITE_URL` for a deployed environment.
 
 ## Architecture
 

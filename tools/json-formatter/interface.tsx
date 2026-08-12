@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { formatJson } from "./logic";
 
-const starterJson = '{"project":"Developer Toolbox","private":true,"tools":["JSON Formatter"]}';
+const starterJson = '{"project":"PureDevUtils","private":true,"tools":["JSON Formatter"]}';
 
 export function JsonFormatterInterface() {
   const [input, setInput] = useState("");

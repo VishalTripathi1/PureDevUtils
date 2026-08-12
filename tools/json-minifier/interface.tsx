@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { minifyJson } from "./logic";
 
-const exampleJson = '{\n  "project": "Developer Toolbox",\n  "private": true,\n  "tools": ["JSON Minifier"]\n}';
+const exampleJson = '{\n  "project": "PureDevUtils",\n  "private": true,\n  "tools": ["JSON Minifier"]\n}';
 
 export function JsonMinifierInterface() {
   const [input, setInput] = useState(""); const [output, setOutput] = useState(""); const [error, setError] = useState(""); const [copied, setCopied] = useState(false);
