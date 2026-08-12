@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { ToolPage } from "@/components/tool-page";
 import { getTool, tools } from "@/tools/registry";
+import { buildToolUrl, getBreadcrumbJsonLd } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -13,17 +15,32 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const tool = getTool((await params).slug);
   if (!tool) return {};
-  const url = `/tools/${tool.slug}`;
+  const url = buildToolUrl(tool.slug);
   return {
     title: tool.metaTitle,
     description: tool.metaDescription,
     alternates: { canonical: url },
-    openGraph: { title: tool.metaTitle, description: tool.metaDescription, url, type: "website" },
+    openGraph: {
+      title: tool.metaTitle,
+      description: tool.metaDescription,
+      url,
+      siteName: siteConfig.name,
+      type: "website",
+    },
+    twitter: { card: "summary" },
   };
 }
 
 export default async function ToolRoute({ params }: PageProps) {
   const tool = getTool((await params).slug);
   if (!tool) notFound();
-  return <><SiteHeader /><ToolPage tool={tool} /></>;
+  return (
+    <>
+      <SiteHeader />
+      <script type="application/ld+json">
+        {JSON.stringify(getBreadcrumbJsonLd(tool))}
+      </script>
+      <ToolPage tool={tool} />
+    </>
+  );
 }
