@@ -26,32 +26,68 @@ export default function HomePage() {
     <>
       <SiteHeader />
       <script type="application/ld+json">{JSON.stringify(getHomeStructuredData())}</script>
-      <main className="shell home">
-        <p className="eyebrow">Developer utilities, made local</p>
-        <h1>Developer Tools & Utilities</h1>
-        <p className="lede">
-          PureDevUtils is a collection of browser-based developer tools for formatting, validating,
-          encoding, decoding, and converting data without uploading your input.
-        </p>
-        <section className="intro-copy">
+
+      <main className="shell home home-hero">
+        {/* HERO */}
+        <div className="hero-card" role="region" aria-label="Hero">
+          <p className="eyebrow">Developer utilities, made local</p>
+
+          <h1 className="hero-title">Developer Tools & Utilities</h1>
+
+          <p className="lede hero-lede">
+            PureDevUtils is a collection of browser-based developer tools for
+            formatting, validating, encoding, decoding, and converting data — all
+            without uploading your input.
+          </p>
+
+          <div className="hero-cta-row">
+            <div className="hero-stat">
+              <div className="hero-stat-top">PRIVATE BY DEFAULT</div>
+              <div className="hero-stat-bottom">Your input stays on your device.</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-top">BUILT FOR DEV WORKFLOWS</div>
+              <div className="hero-stat-bottom">JSON • JWT • URL • Base64 • UUID • CSV.</div>
+            </div>
+          </div>
+        </div>
+
+        {/* INTRO COPY */}
+        <section className="intro-copy modern-intro" aria-label="Intro">
           <h2>Developer utilities for JSON, JWT, URL, Base64, UUID, CSV, and more</h2>
           <p>
-            Use the tools directly in your browser for fast, private results. Every tool is built to keep
-            your data on your device and reduce unnecessary network exposure.
+            Use the tools directly in your browser for fast, private results. Every tool
+            is designed to keep your data local and reduce unnecessary network exposure.
           </p>
         </section>
-        <section aria-labelledby="json-tools">
-          <div className="section-heading">
-            <h2 id="json-tools">Popular developer tools</h2>
+
+        {/* TOOLS GRID */}
+        <section aria-labelledby="popular-tools" className="tools-section">
+          <div className="section-heading tools-heading">
+            <h2 id="popular-tools">Popular developer tools</h2>
             <span>{tools.length} available</span>
           </div>
-          <div className="tool-grid">
+
+          <div className="tool-grid tool-grid-modern">
             {tools.map((tool) => (
-              <Link className="tool-card" href={`/tools/${tool.slug}`} key={tool.slug}>
-                <span className="tool-icon">{tool.icon}</span>
+              <Link
+                className="tool-card tool-card-modern"
+                href={`/tools/${tool.slug}`}
+                key={tool.slug}
+              >
+                <div className="tool-card-top">
+                  <span className="tool-icon" aria-hidden="true">
+                    {tool.icon}
+                  </span>
+                  <span className="tool-pill">Open</span>
+                </div>
+
                 <h3>{tool.name}</h3>
                 <p>{tool.description}</p>
-                <span className="card-link">{tool.name} tool <span aria-hidden="true">→</span></span>
+
+                <span className="card-link">
+                  {tool.name} tool <span aria-hidden="true">→</span>
+                </span>
               </Link>
             ))}
           </div>
