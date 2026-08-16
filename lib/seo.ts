@@ -22,9 +22,9 @@ export function getSitemapXml() {
   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>`;
 }
 
-export function getRobotsTxt() {
-  return `User-agent: *\nAllow: /\nSitemap: ${buildAbsoluteUrl("/sitemap.xml")}`;
-}
+// export function getRobotsTxt() {
+//   return `User-agent: *\nAllow: /\nSitemap: ${buildAbsoluteUrl("/sitemap.xml")}`;
+// }
 
 export function getHomeStructuredData() {
   return {
