@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { buildAbsoluteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -8,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://puredevutils.com/sitemap.xml",
+    sitemap: buildAbsoluteUrl("/sitemap.xml"),
   };
 }

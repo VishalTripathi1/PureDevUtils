@@ -22,9 +22,9 @@ export function getSitemapXml() {
   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>`;
 }
 
-// export function getRobotsTxt() {
-//   return `User-agent: *\nAllow: /\nSitemap: ${buildAbsoluteUrl("/sitemap.xml")}`;
-// }
+export function getRobotsTxt() {
+  return `User-agent: *\nAllow: /\nSitemap: ${buildAbsoluteUrl("/sitemap.xml")}`;
+}
 
 export function getHomeStructuredData() {
   return {
@@ -32,6 +32,64 @@ export function getHomeStructuredData() {
     "@type": "WebSite",
     name: siteConfig.name,
     url: siteConfig.url,
+    description: siteConfig.description,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: buildAbsoluteUrl("/?q={search_term_string}"),
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
+export function getOrganizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: buildAbsoluteUrl("/icon.png"),
+  };
+}
+
+// FAQPage structured data lets tool FAQs surface as rich results in
+// Google search — this reuses the same FAQ copy already shown on the page,
+// so there is only one place to keep the content accurate.
+export function getFaqJsonLd(tool: ToolDefinition) {
+  if (tool.faq.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: tool.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+// SoftwareApplication structured data signals to Google that each tool is a
+// free, in-browser utility, which is eligible for rich result treatment
+// (price, category, rating) distinct from a plain article/page result.
+export function getSoftwareApplicationJsonLd(tool: ToolDefinition) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: tool.name,
+    url: buildToolUrl(tool.slug),
+    description: tool.metaDescription,
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Any (runs in browser)",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
   };
 }
 

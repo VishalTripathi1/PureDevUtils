@@ -2,22 +2,27 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { tools } from "@/tools/registry";
 import { siteConfig } from "@/config/site";
-import { getHomeStructuredData } from "@/lib/seo";
+import { getHomeStructuredData, getOrganizationJsonLd } from "@/lib/seo";
+
+const homeTitle = "Free Developer Tools & Utilities | PureDevUtils";
+const homeDescription =
+  "Free browser-based developer tools for JSON, JWT, Base64, URL, UUID, and CSV — format, validate, encode, decode, and convert data privately, with nothing uploaded.";
 
 export const metadata = {
-  title: "Free Developer Tools & Utilities | PureDevUtils",
-  description:
-    "PureDevUtils offers browser-based developer utilities for JSON, encoding, decoding, and conversion tasks that run privately in your browser.",
+  title: homeTitle,
+  description: homeDescription,
+  alternates: { canonical: siteConfig.url },
   openGraph: {
-    title: "Free Developer Tools & Utilities | PureDevUtils",
-    description:
-      "PureDevUtils offers browser-based developer utilities for JSON, encoding, decoding, and conversion tasks that run privately in your browser.",
+    title: homeTitle,
+    description: homeDescription,
     url: siteConfig.url,
     siteName: siteConfig.name,
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    title: homeTitle,
+    description: homeDescription,
   },
 };
 
@@ -26,6 +31,7 @@ export default function HomePage() {
     <>
       <SiteHeader />
       <script type="application/ld+json">{JSON.stringify(getHomeStructuredData())}</script>
+      <script type="application/ld+json">{JSON.stringify(getOrganizationJsonLd())}</script>
 
       <main className="shell home home-hero">
         {/* HERO */}
