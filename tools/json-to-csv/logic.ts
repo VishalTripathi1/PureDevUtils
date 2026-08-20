@@ -7,7 +7,15 @@ function flatten(value: unknown, path = "", result: Record<string, string> = {})
   return result;
 }
 
-function escapeCsv(value: string) { return /[",\n\r]/.test(value) ? `"${value.replaceAll('"', '""')}"` : value; }
+function escapeCsv(value: string) {
+  // Guard against CSV/formula injection: if a cell value starts with =, +,
+  // -, or @, spreadsheet apps (Excel, Google Sheets, LibreOffice) can
+  // interpret it as a formula when the file is opened, which can run
+  // arbitrary commands via DDE. Prefixing with a single quote forces the
+  // cell to be read as plain text while keeping the visible value intact.
+  const guarded = /^[=+\-@\t\r]/.test(value) ? `'${value}` : value;
+  return /[",\n\r]/.test(guarded) ? `"${guarded.replaceAll('"', '""')}"` : guarded;
+}
 
 export function jsonToCsv(input: string): ConvertResult {
   if (!input.trim()) return { ok: false, error: "Paste a JSON array to convert it." };

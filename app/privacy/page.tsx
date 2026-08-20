@@ -30,7 +30,7 @@ export default function PrivacyPage() {
   return (
     <>
       <SiteHeader />
-      <main className="shell tool-page">
+      <main id="main-content" className="shell tool-page">
         <div className="breadcrumbs">
           <Link href="/">{siteConfig.name}</Link>
           <span>/</span>

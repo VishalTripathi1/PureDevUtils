@@ -35,7 +35,7 @@ export default function HomePage() {
       <script type="application/ld+json">{JSON.stringify(getHomeStructuredData())}</script>
       <script type="application/ld+json">{JSON.stringify(getOrganizationJsonLd())}</script>
 
-      <main className="shell home home-hero">
+      <main id="main-content" className="shell home home-hero">
         {/* HERO */}
         <div className="hero-card" role="region" aria-label="Hero">
           <div>
