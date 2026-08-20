@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ShortcutHint, useModifierKey } from "@/components/shortcut-hint";
 import { formatJson } from "./logic";
 
 const starterJson = '{"project":"PureDevUtils","private":true,"tools":["JSON Formatter"]}';
@@ -11,6 +12,7 @@ export function JsonFormatterInterface() {
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const modifier = useModifierKey();
 
   function format() {
     const result = formatJson(input);
@@ -33,8 +35,8 @@ export function JsonFormatterInterface() {
   });
   return <section className="workbench" aria-label="JSON formatter">
     <div className="editor-toolbar"><span>Input JSON</span><div><button className="text-button" onClick={() => setInput(starterJson)}>Load example</button><button className="text-button" onClick={clear}>Clear</button></div></div>
-    <textarea ref={inputRef} className="code-editor" value={input} onChange={(event) => setInput(event.target.value)} spellCheck={false} aria-label="JSON input" placeholder={'Paste JSON here…\n\nPress Ctrl + Enter to format'} />
-    <div className="action-row"><button className="primary-button" onClick={format}>Format JSON <kbd>Ctrl ↵</kbd></button>{error && <p className="error-message" role="alert">{error}</p>}</div>
+    <textarea ref={inputRef} className="code-editor" value={input} onChange={(event) => setInput(event.target.value)} spellCheck={false} aria-label="JSON input" placeholder={`Paste JSON here…\n\nPress ${modifier} + Enter to format`} />
+    <div className="action-row"><button className="primary-button" onClick={format}>Format JSON <ShortcutHint /></button>{error && <p className="error-message" role="alert">{error}</p>}</div>
     <div className="editor-toolbar output-toolbar"><span>Formatted JSON</span><div><button className="text-button" disabled={!output} onClick={copyOutput}>{copied ? "Copied" : "Copy"}</button><button className="text-button" disabled={!output} onClick={download}>Download</button></div></div>
     <textarea className="code-editor output-editor" value={output} readOnly spellCheck={false} aria-label="Formatted JSON output" placeholder="Formatted JSON will appear here." />
   </section>;

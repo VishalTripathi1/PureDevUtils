@@ -50,7 +50,7 @@ export function getOrganizationJsonLd() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: buildAbsoluteUrl("/icon"),
+    logo: buildAbsoluteUrl("/favicon.ico"),
   };
 }
 

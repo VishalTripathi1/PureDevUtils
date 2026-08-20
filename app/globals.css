@@ -661,6 +661,73 @@ button {
   border-top: 1px solid var(--line);
 }
 
+/* ============================================================
+   Side-by-side workbench layout (desktop)
+   Scoped to ":has(> .code-editor.output-editor)" — only matches
+   tools where the output textarea is a direct child of .workbench
+   (the plain single-input/single-output converters). JWT decoder
+   and JSON diff nest their output inside their own wrapper divs,
+   so this selector never touches their bespoke layouts.
+   ============================================================ */
+@media (min-width: 860px) {
+  .workbench:has(> .code-editor.output-editor) {
+    display: grid;
+    grid-template-columns: 1fr 190px 1fr;
+    grid-template-areas:
+      "in-toolbar . out-toolbar"
+      "in-editor action out-editor";
+    align-items: stretch;
+  }
+
+  .workbench:has(> .code-editor.output-editor) > .editor-toolbar:not(.output-toolbar) {
+    grid-area: in-toolbar;
+    border-right: 1px solid var(--line);
+  }
+
+  .workbench:has(> .code-editor.output-editor) > .editor-toolbar.output-toolbar {
+    grid-area: out-toolbar;
+    border-top: 0;
+  }
+
+  .workbench:has(> .code-editor.output-editor) > .code-editor:not(.output-editor) {
+    grid-area: in-editor;
+    border-right: 1px solid var(--line);
+    min-height: 420px;
+  }
+
+  .workbench:has(> .code-editor.output-editor) > .code-editor.output-editor {
+    grid-area: out-editor;
+    min-height: 420px;
+  }
+
+  .workbench:has(> .code-editor.output-editor) > .action-row {
+    grid-area: action;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 14px;
+    border-top: 0;
+    border-right: 1px solid var(--line);
+    background: var(--surface-2);
+    text-align: center;
+  }
+
+  .workbench:has(> .code-editor.output-editor) > .action-row .error-message,
+  .workbench:has(> .code-editor.output-editor) > .action-row .success-message {
+    max-width: 160px;
+  }
+
+  .workbench:has(> .code-editor.output-editor) > .action-row .primary-button {
+    width: 100%;
+  }
+
+  .workbench:has(> .code-editor.output-editor) > .action-row kbd {
+    display: block;
+    margin: 6px 0 0;
+  }
+}
+
 .primary-button {
   display: inline-block;
   border: 1px solid var(--accent);
@@ -1068,14 +1135,19 @@ kbd {
 
   .nav {
     gap: 12px;
+    justify-content: space-between;
   }
 
   .nav nav {
-    display: none;
+    gap: 10px;
+  }
+
+  .nav a {
+    font-size: 12px;
   }
 
   .home-hero {
-    padding: 32px 0 0;
+    padding-top: 32px;
   }
 
   .hero-card {
