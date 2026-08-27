@@ -1,1 +1,36 @@
-import type{ToolDefinition}from"../types";import{JsonToJavaInterface}from"./interface";export const jsonToJava:ToolDefinition={slug:"json-to-java",name:"JSON to Java",category:"Code generation",icon:"JV",description:"Generate Java model classes from JSON locally.",longDescription:"Infer simple Java model classes from a JSON example in your browser.",metaTitle:"JSON to Java — Generate Classes Locally",metaDescription:"Generate Java classes from JSON locally.",faq:[{question:"Is JSON uploaded?",answer:"No. Generation runs in your browser."}],relatedTools:[],Interface:JsonToJavaInterface};
+import type { ToolDefinition } from "../types";
+import { JsonToJavaInterface } from "./interface";
+export const jsonToJava: ToolDefinition = {
+  slug: "json-to-java",
+  name: "JSON to Java",
+  category: "Code generation",
+  icon: "JV",
+  description: "Generate Java model classes from JSON locally.",
+  longDescription:
+    "Infer simple Java model classes from a JSON example in your browser. Nested objects become their own classes, arrays become typed lists, and field types are guessed from the sample values — so you get a starting point for POJOs without hand-typing boilerplate.",
+  metaTitle: "JSON to Java — Generate POJO Classes Locally",
+  metaDescription:
+    "Convert a JSON example into Java model classes (POJOs) locally in your browser. Nested objects and arrays are handled automatically — nothing is uploaded.",
+  faq: [
+    {
+      question: "Is JSON uploaded?",
+      answer: "No. Generation runs in your browser.",
+    },
+    {
+      question: "How are nested objects handled?",
+      answer:
+        "Each nested object in your JSON example becomes its own Java class, referenced as a field on the parent class.",
+    },
+    {
+      question: "What Java types are used?",
+      answer:
+        "Types are inferred from the sample values: strings, numbers, booleans, lists, and nested object classes. Review and adjust types for edge cases your sample doesn't cover.",
+    },
+  ],
+  relatedTools: [
+    { slug: "json-to-typescript", name: "JSON to TypeScript" },
+    { slug: "json-to-python", name: "JSON to Python" },
+    { slug: "json-formatter", name: "JSON Formatter" },
+  ],
+  Interface: JsonToJavaInterface,
+};
