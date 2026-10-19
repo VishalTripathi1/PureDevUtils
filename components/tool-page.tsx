@@ -1,10 +1,12 @@
-"use client";
-
+import { toolGuides } from "@/content/tool-guides";
+import { tutorials } from "@/content/tutorials";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import type { ToolDefinition } from "@/tools/types";
 
 export function ToolPage({ tool }: { tool: ToolDefinition }) {
+  const guide = toolGuides[tool.slug];
+  const tutorial = tutorials.find(item => item.slug === guide.tutorial);
   const ToolInterface = tool.Interface;
   return (
     <main id="main-content" className="shell tool-page">
@@ -32,20 +34,12 @@ export function ToolPage({ tool }: { tool: ToolDefinition }) {
       <section className="tool-content" aria-labelledby="how-to-use">
         <h2 id="how-to-use">How to use {tool.name}</h2>
         <ol>
-          <li>Paste or type your input into the editor.</li>
-          <li>Use the tool action to process your data in the browser.</li>
-          <li>Review the output, then copy or download it if needed.</li>
+          {guide.steps.map(step => <li key={step}>{step}</li>)}
         </ol>
       </section>
-      <section className="tool-features" aria-labelledby="key-features">
-        <h2 id="key-features">Key features</h2>
-        <ul>
-          <li>Private browser-based processing.</li>
-          <li>No account or login required.</li>
-          <li>Works without uploading your data.</li>
-          <li>Fast results for common developer tasks.</li>
-        </ul>
-      </section>
+      <section className="tool-content"><h2>Example</h2><pre>{guide.example}</pre></section>
+      <section className="tool-content"><h2>Limitations and details</h2><p>{guide.limitations}</p></section>
+      {tutorial && <section className="tool-content"><h2>Practical guide</h2><Link href={`/tutorials/${tutorial.slug}`}>{tutorial.title}</Link></section>}
       <section className="faq" aria-labelledby="faq">
         <h2 id="faq">Frequently asked questions</h2>
         {tool.faq.map((item) => (

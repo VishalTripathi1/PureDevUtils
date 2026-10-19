@@ -8,7 +8,7 @@ export const jsonToTypescript: ToolDefinition = {
   icon: "TS",
   description: "Generate TypeScript interfaces from JSON locally.",
   longDescription:
-    "Infer TypeScript interfaces from a JSON example in your browser. Nested objects become their own named interfaces, arrays are typed based on their contents, and optional or inconsistent fields are flagged — giving you a typed starting point instead of hand-writing interfaces from an API response.",
+    "Infer TypeScript interfaces from a JSON example in your browser. Nested objects become their own named interfaces, arrays are typed from their first element — giving you a typed starting point instead of hand-writing interfaces from an API response.",
   metaTitle: "JSON to TypeScript — Generate Interfaces Locally",
   metaDescription:
     "Convert a JSON example into TypeScript interfaces locally in your browser. Nested objects and arrays are typed automatically — nothing is uploaded.",
@@ -22,7 +22,7 @@ export const jsonToTypescript: ToolDefinition = {
     {
       question: "What happens with mixed array types?",
       answer:
-        "If an array contains values of different shapes, the generated type is a union so the interface still matches your sample data.",
+        "Only the first array element is used. Review mixed types and later objects manually; unions and optional fields are not inferred.",
     },
   ],
   relatedTools: [

@@ -8,9 +8,9 @@ export const jsonToJava: ToolDefinition = {
   description: "Generate Java model classes from JSON locally.",
   longDescription:
     "Infer simple Java model classes from a JSON example in your browser. Nested objects become their own classes, arrays become typed lists, and field types are guessed from the sample values — so you get a starting point for POJOs without hand-typing boilerplate.",
-  metaTitle: "JSON to Java — Generate POJO Classes Locally",
+  metaTitle: "JSON to Java POJO Generator",
   metaDescription:
-    "Convert a JSON example into Java model classes (POJOs) locally in your browser. Nested objects and arrays are handled automatically — nothing is uploaded.",
+    "Generate Java POJOs or records from nested JSON. Set class and package names, add Jackson or Lombok, and download a Java file. Processing stays local.",
   faq: [
     {
       question: "Is JSON uploaded?",

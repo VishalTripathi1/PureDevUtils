@@ -1,3 +1,4 @@
+import { tutorials } from "@/content/tutorials";
 import { tools } from "@/tools/registry";
 import { siteConfig } from "@/config/site";
 import type { ToolDefinition } from "@/tools/types";
@@ -11,7 +12,7 @@ export function buildToolUrl(slug: string) {
 }
 
 export function getSitemapUrls() {
-  return [siteConfig.url, ...tools.map((tool) => buildToolUrl(tool.slug))];
+  return [siteConfig.url, buildAbsoluteUrl("/privacy"), buildAbsoluteUrl("/tutorials"), ...tools.map((tool) => buildToolUrl(tool.slug)), ...tutorials.map(t => buildAbsoluteUrl(`/tutorials/${t.slug}`))];
 }
 
 export function getSitemapXml() {
@@ -33,14 +34,7 @@ export function getHomeStructuredData() {
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: buildAbsoluteUrl("/?q={search_term_string}"),
-      },
-      "query-input": "required name=search_term_string",
-    },
+
   };
 }
 
@@ -50,13 +44,10 @@ export function getOrganizationJsonLd() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: buildAbsoluteUrl("/favicon.ico"),
+    logo: buildAbsoluteUrl("/brand.svg"),
   };
 }
 
-// FAQPage structured data lets tool FAQs surface as rich results in
-// Google search — this reuses the same FAQ copy already shown on the page,
-// so there is only one place to keep the content accurate.
 export function getFaqJsonLd(tool: ToolDefinition) {
   if (tool.faq.length === 0) return null;
   return {
@@ -73,9 +64,6 @@ export function getFaqJsonLd(tool: ToolDefinition) {
   };
 }
 
-// SoftwareApplication structured data signals to Google that each tool is a
-// free, in-browser utility, which is eligible for rich result treatment
-// (price, category, rating) distinct from a plain article/page result.
 export function getSoftwareApplicationJsonLd(tool: ToolDefinition) {
   return {
     "@context": "https://schema.org",

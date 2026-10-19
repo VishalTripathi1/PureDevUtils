@@ -5,7 +5,7 @@ export const jsonFormatter: ToolDefinition = {
   slug: "json-formatter", name: "JSON Formatter", category: "JSON", icon: "{}",
   description: "Format and beautify JSON with clear errors and no uploads.",
   longDescription: "Paste a JSON document to make nested data readable with consistent two-space indentation. Formatting happens entirely in your browser, so sensitive payloads never leave your device.",
-  metaTitle: "JSON Formatter — Format JSON Online, Locally",
+  metaTitle: "JSON Formatter — Format and Beautify JSON",
   metaDescription: "Format and beautify JSON locally in your browser. Fast, private JSON formatting with validation, copy, and download.",
   faq: [
     { question: "Is my JSON uploaded anywhere?", answer: "No. Formatting runs in your browser using the built-in JSON parser. No JSON is sent to a server." },

@@ -5,12 +5,12 @@ import { tools } from "@/tools/registry";
 import { siteConfig } from "@/config/site";
 import { getHomeStructuredData, getOrganizationJsonLd } from "@/lib/seo";
 
-const homeTitle = "Free Developer Tools & Utilities | PureDevUtils";
+const homeTitle = "PureDevUtils — Private Developer Tools";
 const homeDescription =
   "Free browser-based developer tools for JSON, JWT, Base64, URL, UUID, and CSV — format, validate, encode, decode, and convert data privately, with nothing uploaded.";
 
 export const metadata = {
-  title: homeTitle,
+  title: { absolute: homeTitle },
   description: homeDescription,
   alternates: { canonical: siteConfig.url },
   openGraph: {
@@ -41,7 +41,7 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">Developer utilities, made local</p>
 
-            <h1 className="hero-title">Developer Tools & Utilities</h1>
+            <h1 className="hero-title">Developer tools. Your data stays local.</h1>
 
             <p className="lede hero-lede">
               PureDevUtils is a collection of browser-based developer tools for
@@ -49,6 +49,7 @@ export default function HomePage() {
               without uploading your input.
             </p>
 
+            <div className="priority-links" aria-label="Featured tools"><Link href="/tools/uuid-generator">UUID Generator →</Link><Link href="/tools/json-to-java">JSON to Java →</Link><Link href="/tools/url-encoder">URL Encoder →</Link></div>
             <div className="hero-cta-row">
               <div className="hero-stat">
                 <div className="hero-stat-top">PRIVATE BY DEFAULT</div>
@@ -76,7 +77,7 @@ export default function HomePage() {
               <div className="out">&nbsp;&nbsp;&quot;id&quot;: 9241</div>
               <div className="out">{"}"}</div>
               <div className="comment">
-                {"// formatted in 3ms · 0 bytes uploaded"}
+                {"// formatted locally in your browser"}
                 <span className="hero-terminal-cursor" />
               </div>
             </div>

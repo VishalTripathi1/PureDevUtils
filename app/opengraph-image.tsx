@@ -44,7 +44,7 @@ export default function Image() {
             lineHeight: 1.1,
           }}
         >
-          Developer Tools & Utilities
+          Private Developer Tools
         </div>
         <div
           style={{
@@ -55,7 +55,7 @@ export default function Image() {
             maxWidth: 900,
           }}
         >
-          JSON, JWT, Base64, URL & CSV tools that run privately in your browser.
+          JSON, JWT, Base64, URL, UUID & CSV tools that run privately in your browser.
         </div>
       </div>
     ),

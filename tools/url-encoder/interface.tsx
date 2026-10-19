@@ -1,4 +1,3 @@
 "use client";
-import { TextConverter } from "@/components/text-converter";
-import { encodeUrl } from "./logic";
-export function UrlEncoderInterface() { return <TextConverter converter={encodeUrl} inputLabel="Text or URL component" outputLabel="URL-encoded output" actionLabel="Encode URL" example="hello world?source=pure-dev-utils" downloadName="url-encoded.txt" mimeType="text/plain" />; }
+import { UrlConverter } from "@/components/url-converter";
+export function UrlEncoderInterface() { return <UrlConverter />; }

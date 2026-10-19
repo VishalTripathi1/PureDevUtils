@@ -60,7 +60,8 @@ export function SiteFooter() {
           © {year} {siteConfig.name}. Runs entirely in your browser.
         </span>
         <div className="footer-bottom-links">
-          <ScrollLink targetId="json-tools">JSON tools</ScrollLink>
+          <ScrollLink targetId="json-tools">All tools</ScrollLink>
+          <Link href="/tutorials">Tutorials</Link>
           <Link href="/privacy">Privacy</Link>
         </div>
       </div>

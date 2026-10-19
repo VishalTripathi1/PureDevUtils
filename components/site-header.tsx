@@ -15,7 +15,8 @@ export function SiteHeader() {
       <div className="shell nav">
         <BrandMark />
         <nav aria-label="Primary">
-          <ScrollLink targetId="json-tools">JSON tools</ScrollLink>
+          <ScrollLink targetId="json-tools">All tools</ScrollLink>
+          <Link href="/tutorials">Tutorials</Link>
           <Link href="/privacy" aria-current={pathname === "/privacy" ? "page" : undefined}>
             Privacy
           </Link>

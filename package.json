@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node scripts/preview.mjs",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "preview": "node scripts/preview.mjs",
+    "check:export": "python3 scripts/check-export.py"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",

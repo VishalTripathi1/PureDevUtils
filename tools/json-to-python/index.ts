@@ -8,7 +8,7 @@ export const jsonToPython: ToolDefinition = {
   icon: "PY",
   description: "Generate Python dataclasses from JSON locally.",
   longDescription:
-    "Infer Python dataclasses from a JSON example in your browser. Nested objects become their own dataclasses, fields are typed from the sample values, and the result is ready to paste straight into a Python module — no server round-trip required.",
+    "Infer Python dataclasses from a JSON example in your browser. Nested objects become their own dataclasses, fields are typed from the sample values, and the result provides a starting point to review for a Python module — no server round-trip required.",
   metaTitle: "JSON to Python — Generate Dataclasses Locally",
   metaDescription:
     "Convert a JSON example into Python dataclasses locally in your browser. Nested objects and field types are inferred automatically — nothing is uploaded.",
